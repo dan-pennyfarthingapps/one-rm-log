@@ -17,8 +17,7 @@ namespace onermlog
 		UIWindow window;
 		
 		MyTabBarController navigation;
-		//MyDialogViewController rootVC;
-		//RootElement rootElement;
+
 		
 		
 		
@@ -75,8 +74,6 @@ namespace onermlog
 		
 		
 	}
-	
-	
 	
 	public class MyTabBarController : UITabBarController {
 		
