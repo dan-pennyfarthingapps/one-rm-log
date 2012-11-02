@@ -1,0 +1,8 @@
+bin/
+obj/
+*.userprefs
+.userprefs
+*/bin/
+*/obj/
+*.DS_Store
+.DS_Store
