@@ -147,19 +147,19 @@ namespace onermlog
 			this._exerciseOne.TabBarItem = new UITabBarItem();
 			this._exerciseOne.TabBarItem.Title = exercises[0].Name;
 			//this._aboutScreenController.TabBarItem.Image = aboutIcon;
-			this._exerciseOne.PushViewController(new RepMaxView(), false);
+			this._exerciseOne.PushViewController(new RepMaxView(exercises[0]), false);
 
 			this._exerciseTwo = new UINavigationController();
 			this._exerciseTwo.TabBarItem = new UITabBarItem();
 			this._exerciseTwo.TabBarItem.Title = exercises[1].Name;
 			//this._aboutScreenController.TabBarItem.Image = aboutIcon;
-			this._exerciseTwo.PushViewController(new RepMaxView(), false);
+			this._exerciseTwo.PushViewController(new RepMaxView(exercises[1]), false);
 
 			this._exerciseThree = new UINavigationController();
 			this._exerciseThree.TabBarItem = new UITabBarItem();
 			this._exerciseThree.TabBarItem.Title = exercises[2].Name;
 			//this._aboutScreenController.TabBarItem.Image = aboutIcon;
-			this._exerciseThree.PushViewController(new RepMaxView(), false);
+			this._exerciseThree.PushViewController(new RepMaxView(exercises[2]), false);
 
 			// TODO: Add settings tab
 

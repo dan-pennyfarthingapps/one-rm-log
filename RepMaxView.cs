@@ -9,11 +9,16 @@ namespace onermlog
 {
 	public partial class RepMaxView : UIViewController
 	{
-		DialogViewController _dvc;
-		RootElement _logRoot;
+		private DialogViewController _dvc;
+		private RootElement _logRoot;
 
-		public RepMaxView () : base ("RepMaxView", null)
+		private Exercise _exercise;
+
+		public RepMaxView (Exercise exerciseToShow) : base ("RepMaxView", null)
 		{
+			this._exercise = exerciseToShow;
+
+
 			this._logRoot = new RootElement("Records");
 			this._dvc = new DialogViewController(UITableViewStyle.Plain, this._logRoot, false);
 
@@ -43,6 +48,9 @@ namespace onermlog
 
 			// Bar
 			this.NavigationController.NavigationBar.SetBackgroundImage (UIImage.FromBundle ("images/navBar"), UIBarMetrics.Default);
+
+			// labels
+			this.lblExName.Text = this._exercise.Name;
 
 			// Put the dialog view controller into the UIView
 			this.dvcView.AddSubview(this._dvc.View);
