@@ -24,6 +24,7 @@
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
     <MtouchLink>None</MtouchLink>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -108,9 +109,19 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Folder Include="images\" />
+    <Folder Include="icons\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\shl.png" />
     <Content Include="images\shl%402X.png" />
+    <Content Include="icons\icon29.png" />
+    <Content Include="icons\icon57.png" />
+    <Content Include="icons\icon58.png" />
+    <Content Include="icons\icon114.png" />
+    <Content Include="icons\icon119.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ITunesArtwork Include="iTunesArtwork%402x" />
+    <ITunesArtwork Include="iTunesArtwork" />
   </ItemGroup>
 </Project>

@@ -2,11 +2,29 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleDisplayName</key>
+	<string>one rm log</string>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>icons/icon114.png</string>
+		<string>icons/icon57.png</string>
+		<string>icons/icon58.png</string>
+		<string>icons/icon29.png</string>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string>com.pennyfarthingapps.onermlog</string>
+	<key>CFBundleVersion</key>
+	<string>.1</string>
+	<key>MinimumOSVersion</key>
+	<string>5.0</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 </dict>
 </plist>
