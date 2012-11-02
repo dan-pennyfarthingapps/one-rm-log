@@ -11,6 +11,7 @@ namespace onermlog
 	{
 		public RepMaxView () : base ("RepMaxView", null)
 		{
+
 		}
 		
 		public override void DidReceiveMemoryWarning ()
@@ -26,6 +27,8 @@ namespace onermlog
 			base.ViewDidLoad ();
 			
 			// Perform any additional setup after loading the view, typically from a nib.
+			this.View.BackgroundColor = UIColor.FromPatternImage(UIImage.FromBundle("images/white_carbon"));
+
 		}
 		
 		public override void ViewDidUnload ()

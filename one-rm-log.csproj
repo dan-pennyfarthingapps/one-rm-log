@@ -122,6 +122,8 @@
     <Content Include="icons\icon58.png" />
     <Content Include="icons\icon114.png" />
     <Content Include="icons\icon119.png" />
+    <Content Include="images\white_carbon.png" />
+    <Content Include="images\white_carbon%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
