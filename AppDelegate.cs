@@ -127,6 +127,8 @@ namespace onermlog
 		public override void ViewDidLoad() {
 			base.ViewDidLoad();
 
+			UIImage rmIcon = UIImage.FromBundle("images/rmTab");
+
 			/**
 			UIImage aboutIcon = UIImage.FromBundle("icons/tabBarIconAbout");
 			this._aboutScreenController = new UINavigationController();
@@ -146,19 +148,19 @@ namespace onermlog
 			this._exerciseOne = new UINavigationController();
 			this._exerciseOne.TabBarItem = new UITabBarItem();
 			this._exerciseOne.TabBarItem.Title = exercises[0].Name;
-			//this._aboutScreenController.TabBarItem.Image = aboutIcon;
+			this._exerciseOne.TabBarItem.Image = rmIcon;
 			this._exerciseOne.PushViewController(new RepMaxView(exercises[0]), false);
 
 			this._exerciseTwo = new UINavigationController();
 			this._exerciseTwo.TabBarItem = new UITabBarItem();
 			this._exerciseTwo.TabBarItem.Title = exercises[1].Name;
-			//this._aboutScreenController.TabBarItem.Image = aboutIcon;
+			this._exerciseTwo.TabBarItem.Image = rmIcon;
 			this._exerciseTwo.PushViewController(new RepMaxView(exercises[1]), false);
 
 			this._exerciseThree = new UINavigationController();
 			this._exerciseThree.TabBarItem = new UITabBarItem();
 			this._exerciseThree.TabBarItem.Title = exercises[2].Name;
-			//this._aboutScreenController.TabBarItem.Image = aboutIcon;
+			this._exerciseThree.TabBarItem.Image = rmIcon;
 			this._exerciseThree.PushViewController(new RepMaxView(exercises[2]), false);
 
 			// TODO: Add settings tab

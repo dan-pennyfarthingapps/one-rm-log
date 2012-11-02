@@ -138,6 +138,10 @@
     <Content Include="images\addnewbtn%402x.png" />
     <Content Include="images\addnewbtn-selected.png" />
     <Content Include="images\addnewbtn-selected%402x.png" />
+    <Content Include="images\configTab.png" />
+    <Content Include="images\configTab%402x.png" />
+    <Content Include="images\rmTab.png" />
+    <Content Include="images\rmTab%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
