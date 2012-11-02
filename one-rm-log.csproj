@@ -104,7 +104,10 @@
     <Compile Include="..\PennyFarElements\PennyFarElements\ResponsiveRadioElement.cs">
       <Link>ResponsiveRadioElement.cs</Link>
     </Compile>
-    <Compile Include="ExerciseView.cs" />
+    <Compile Include="RepMaxView.cs" />
+    <Compile Include="RepMaxView.designer.cs">
+      <DependentUpon>RepMaxView.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -123,5 +126,8 @@
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
     <ITunesArtwork Include="iTunesArtwork" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="RepMaxView.xib" />
   </ItemGroup>
 </Project>
