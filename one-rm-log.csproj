@@ -133,6 +133,7 @@
     <Content Include="images\white_carbon%402x.png" />
     <Content Include="images\navBar.png" />
     <Content Include="images\navBar%402x.png" />
+    <Content Include="onerm.db" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

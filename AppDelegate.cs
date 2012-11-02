@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+
+using SQLite;
 
 namespace onermlog
 {
@@ -18,8 +22,10 @@ namespace onermlog
 		
 		MyTabBarController navigation;
 
-		
-		
+
+		private SQLiteConnection db;
+		private List<Exercise> exercises;
+
 		
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -29,7 +35,9 @@ namespace onermlog
 		//
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-
+			CopyDb();
+			
+			SetupDb();
 			
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
@@ -39,14 +47,14 @@ namespace onermlog
 			window.RootViewController = navigation;
 			window.MakeKeyAndVisible ();
 			
-			//CopyDb();
-			
+
+
 			return true;
 		}
-		/**
+
 		public void CopyDb ()
 		{
-			string dbname = "bikes.db";
+			string dbname = "onerm.db";
 			string documents = Environment.GetFolderPath(Environment.SpecialFolder.Personal); // This goes to the documents directory for your app
 			string db = Path.Combine(documents, dbname);
 			
@@ -64,13 +72,41 @@ namespace onermlog
 			}
 			
 		}
-		**/
+
 		public override void WillTerminate(UIApplication app) {
 			//	Settings.Write();
 			
 		}
 		
-		
+		private void SetupDb ()
+		{
+			string dbname = "onerm.db";
+			string documents = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // This goes to the documents directory for your app
+			string dbPath = Path.Combine (documents, dbname);
+			
+			db = new SQLiteConnection (dbPath);
+
+			db.CreateTable<Exercise> ();
+
+			this.exercises = db.Query<Exercise> ("select * from Exercise");
+
+			// populate the database
+			if (exercises.Count () < 3) {
+				Exercise bench = new Exercise {
+					Name = "bench press"
+				};
+				Exercise squat = new Exercise {
+					Name = "squat"
+				};
+				Exercise deadlift = new Exercise {
+					Name = "deadlift"
+				};
+
+				db.InsertAll(new[] { bench, squat, deadlift }, false);
+				this.exercises = db.Query<Exercise> ("select * from Exercise");
+			} 
+
+		}
 		
 		
 	}
@@ -83,6 +119,9 @@ namespace onermlog
 		UINavigationController _exerciseOne;
 		UINavigationController _exerciseTwo;
 		UINavigationController _exerciseThree;
+
+		private SQLiteConnection db;
+		private List<Exercise> exercises;
 		
 		
 		public override void ViewDidLoad() {
@@ -97,22 +136,28 @@ namespace onermlog
 			this._aboutScreenController.PushViewController(new AboutScreen(), false);
 			***/
 
+			string dbname = "onerm.db";
+			string documents = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // This goes to the documents directory for your app
+			string dbPath = Path.Combine (documents, dbname);
+			
+			db = new SQLiteConnection (dbPath);
+			this.exercises = db.Query<Exercise> ("select * from Exercise");
 
 			this._exerciseOne = new UINavigationController();
 			this._exerciseOne.TabBarItem = new UITabBarItem();
-			this._exerciseOne.TabBarItem.Title = "Exercise 1";
+			this._exerciseOne.TabBarItem.Title = exercises[0].Name;
 			//this._aboutScreenController.TabBarItem.Image = aboutIcon;
 			this._exerciseOne.PushViewController(new RepMaxView(), false);
 
 			this._exerciseTwo = new UINavigationController();
 			this._exerciseTwo.TabBarItem = new UITabBarItem();
-			this._exerciseTwo.TabBarItem.Title = "Exercise 2";
+			this._exerciseTwo.TabBarItem.Title = exercises[1].Name;
 			//this._aboutScreenController.TabBarItem.Image = aboutIcon;
 			this._exerciseTwo.PushViewController(new RepMaxView(), false);
 
 			this._exerciseThree = new UINavigationController();
 			this._exerciseThree.TabBarItem = new UITabBarItem();
-			this._exerciseThree.TabBarItem.Title = "Exercise 3";
+			this._exerciseThree.TabBarItem.Title = exercises[2].Name;
 			//this._aboutScreenController.TabBarItem.Image = aboutIcon;
 			this._exerciseThree.PushViewController(new RepMaxView(), false);
 
