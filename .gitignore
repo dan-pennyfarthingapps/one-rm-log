@@ -6,3 +6,6 @@ obj/
 */obj/
 *.DS_Store
 .DS_Store
+*.png
+images/
+*/images/

@@ -134,6 +134,8 @@
     <Content Include="images\navBar.png" />
     <Content Include="images\navBar%402x.png" />
     <Content Include="onerm.db" />
+    <Content Include="images\addnewbtn.png" />
+    <Content Include="images\addnewbtn%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
