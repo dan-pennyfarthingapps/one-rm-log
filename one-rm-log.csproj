@@ -85,6 +85,7 @@
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
     <Reference Include="MonoTouch.Dialog-1" />
+    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -111,6 +112,8 @@
     <Compile Include="RepMaxView.designer.cs">
       <DependentUpon>RepMaxView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Exercise.cs" />
+    <Compile Include="SQLite.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
