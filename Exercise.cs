@@ -15,7 +15,7 @@ namespace onermlog
 	}
 
 	// Each Log belongs to an Exercise via Exercise ID
-	public class Log
+	public class RmLog
 	{
 
 		[PrimaryKey, AutoIncrement]

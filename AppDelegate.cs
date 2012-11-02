@@ -93,13 +93,13 @@ namespace onermlog
 			// populate the database
 			if (exercises.Count () < 3) {
 				Exercise bench = new Exercise {
-					Name = "bench press"
+					Name = "Bench Press"
 				};
 				Exercise squat = new Exercise {
-					Name = "squat"
+					Name = "Squat"
 				};
 				Exercise deadlift = new Exercise {
-					Name = "deadlift"
+					Name = "Deadlift"
 				};
 
 				db.InsertAll(new[] { bench, squat, deadlift }, false);

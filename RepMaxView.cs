@@ -1,9 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 
 using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
+
+using SQLite;
 
 namespace onermlog
 {
@@ -12,20 +16,33 @@ namespace onermlog
 		private DialogViewController _dvc;
 		private RootElement _logRoot;
 
+		private SQLiteConnection db;
+
 		private Exercise _exercise;
+		private List<RmLog> _rms;
 
 		public RepMaxView (Exercise exerciseToShow) : base ("RepMaxView", null)
 		{
 			this._exercise = exerciseToShow;
 
+			string dbname = "onerm.db";
+			string documents = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // This goes to the documents directory for your app
+			string dbPath = Path.Combine (documents, dbname);
+			
+			db = new SQLiteConnection (dbPath);
 
-			this._logRoot = new RootElement("Records");
-			this._dvc = new DialogViewController(UITableViewStyle.Plain, this._logRoot, false);
+			this.LoadRecords();
 
-			// sample data for testing
-			Section logSect = new Section();
-			StringElement recordString = new StringElement("200 lb.");
-			logSect.Add(recordString);
+			this._logRoot = new RootElement ("Records");
+			this._dvc = new DialogViewController (UITableViewStyle.Plain, this._logRoot, false);
+
+			// load data from list
+			Section logSect = new Section ();
+			foreach (RmLog rm in this._rms) {
+				StringElement recordString = new StringElement (rm.Weight.ToString());
+				logSect.Add(recordString);
+			}
+
 
 			this._logRoot.Add(logSect);
 		}
@@ -76,6 +93,20 @@ namespace onermlog
 			// Return true for supported orientations
 			return (toInterfaceOrientation != UIInterfaceOrientation.PortraitUpsideDown);
 		}
+
+		private void LoadRecords ()
+		{
+			db.CreateTable<RmLog> ();
+			
+			this._rms = db.Query<RmLog> ("select * from RmLog where ExerciseID=?", this._exercise.ID);
+
+			// temp for testing
+			if (this._rms.Count == 0) {
+				this._rms.Add(new RmLog { ExerciseID = this._exercise.ID, DateLogged = DateTime.Now, Weight = 200.0, });
+				this._rms.Add(new RmLog { ExerciseID = this._exercise.ID, DateLogged = DateTime.Now, Weight = 190.0, });
+			}
+		}
+	
 	}
 }
 
