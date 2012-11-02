@@ -44,9 +44,12 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <CodesignKey>iPhone Developer</CodesignKey>
+    <CodesignKey>iPhone Developer: Daniel Wiseman (9YM3967TJX)</CodesignKey>
     <MtouchDebug>True</MtouchDebug>
     <MtouchProfiling>True</MtouchProfiling>
+    <CodesignProvision>8B1F4DC0-EF23-4A59-A5B5-382ADDF63082</CodesignProvision>
+    <MtouchArch>ARMv7</MtouchArch>
+    <MtouchI18n />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -124,6 +127,8 @@
     <Content Include="icons\icon119.png" />
     <Content Include="images\white_carbon.png" />
     <Content Include="images\white_carbon%402x.png" />
+    <Content Include="images\navBar.png" />
+    <Content Include="images\navBar%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
