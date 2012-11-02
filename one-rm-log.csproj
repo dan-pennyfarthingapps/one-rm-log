@@ -80,6 +80,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="monotouch" />
+    <Reference Include="MonoTouch.Dialog-1" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Info.plist" />
@@ -87,6 +88,29 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="..\PennyFarElements\PennyFarElements\CounterElement.cs">
+      <Link>CounterElement.cs</Link>
+    </Compile>
+    <Compile Include="..\PennyFarElements\PennyFarElements\CustomDialogViewController.cs">
+      <Link>CustomDialogViewController.cs</Link>
+    </Compile>
+    <Compile Include="..\PennyFarElements\PennyFarElements\CustomRootElement.cs">
+      <Link>CustomRootElement.cs</Link>
+    </Compile>
+    <Compile Include="..\PennyFarElements\PennyFarElements\ResponsiveCounterElement.cs">
+      <Link>ResponsiveCounterElement.cs</Link>
+    </Compile>
+    <Compile Include="..\PennyFarElements\PennyFarElements\ResponsiveRadioElement.cs">
+      <Link>ResponsiveRadioElement.cs</Link>
+    </Compile>
+    <Compile Include="ExerciseView.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\shl.png" />
+    <Content Include="images\shl%402X.png" />
+  </ItemGroup>
 </Project>
