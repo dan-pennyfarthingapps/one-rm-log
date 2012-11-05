@@ -7,6 +7,8 @@ using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 
+using PennyFarElements;
+
 using SQLite;
 
 namespace onermlog
@@ -15,6 +17,7 @@ namespace onermlog
 	{
 		private DialogViewController _dvc;
 		private RootElement _logRoot;
+		private Section _logSect;
 
 		private SQLiteConnection db;
 
@@ -37,14 +40,14 @@ namespace onermlog
 			this._dvc = new DialogViewController (UITableViewStyle.Plain, this._logRoot, false);
 
 			// load data from list
-			Section logSect = new Section ();
+			this._logSect = new Section ();
 			foreach (RmLog rm in this._rms) {
 				StringElement recordString = new StringElement (rm.Weight.ToString());
-				logSect.Add(recordString);
+				this._logSect.Add(recordString);
 			}
 
 
-			this._logRoot.Add(logSect);
+			this._logRoot.Add(this._logSect);
 		}
 		
 		public override void DidReceiveMemoryWarning ()
@@ -72,6 +75,13 @@ namespace onermlog
 			// Put the dialog view controller into the UIView
 			this.dvcView.AddSubview(this._dvc.View);
 
+
+			this.btnAddNew.TouchUpInside += delegate(object sender, EventArgs e) {
+				
+				var addRMScreen = NewRMEntry ();
+				addRMScreen.ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
+				this.NavigationController.PresentViewController (addRMScreen, true, null);
+			};
 
 
 		}
@@ -105,6 +115,64 @@ namespace onermlog
 				this._rms.Add(new RmLog { ExerciseID = this._exercise.ID, DateLogged = DateTime.Now, Weight = 200.0, });
 				this._rms.Add(new RmLog { ExerciseID = this._exercise.ID, DateLogged = DateTime.Now, Weight = 190.0, });
 			}
+		}
+
+
+		private UINavigationController NewRMEntry () {
+
+			CustomRootElement root = new CustomRootElement(" ");
+
+			CustomDialogViewController dvc = new CustomDialogViewController(root, false);
+			UINavigationController nav = new UINavigationController(dvc);
+
+			dvc.BackgroundImage = "images/white_carbon";
+			dvc.NavigationBarImage = UIImage.FromBundle("images/navBar");
+
+
+			UIColor buttonColor = UIColor.FromRGB(39, 113, 205);
+			UIBarButtonItem cancelButton = new UIBarButtonItem(UIBarButtonSystemItem.Cancel);
+			cancelButton.TintColor = buttonColor;
+			cancelButton.Clicked += delegate {
+				dvc.NavigationController.DismissViewController(true, null);
+			};
+			UIBarButtonItem saveButton = new UIBarButtonItem(UIBarButtonSystemItem.Save);
+			saveButton.TintColor = buttonColor;
+			dvc.NavigationItem.LeftBarButtonItem = cancelButton;
+			dvc.NavigationItem.RightBarButtonItem = saveButton;
+
+
+			Section newRMSection = new Section("Record Details") {};
+
+			ResponsiveCounterElement newRMCounter = new ResponsiveCounterElement("New RM", "200.0"); // TODO: grab the previous best and use that
+			DateElement newRMDate = new DateElement("Date", DateTime.Today);
+
+			newRMSection.Add(newRMCounter);
+			newRMSection.Add(newRMDate);
+
+			root.Add(newRMSection);
+
+
+
+			saveButton.Clicked += delegate {
+				RmLog newEntry = new RmLog {
+					DateLogged = newRMDate.DateValue,
+					Weight = Convert.ToDouble(newRMCounter.Value),
+					ExerciseID = this._exercise.ID
+				};
+
+				dvc.NavigationController.DismissViewController(true, null);
+
+				var b = db.Insert(newEntry);
+				this._rms.Add(newEntry);
+
+				// refresh view
+				this._logRoot.Reload(this._logSect, UITableViewRowAnimation.None);
+
+			};
+
+			return nav;
+
+
 		}
 	
 	}
