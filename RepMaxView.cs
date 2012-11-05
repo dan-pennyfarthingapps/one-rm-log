@@ -108,7 +108,7 @@ namespace onermlog
 		{
 			db.CreateTable<RmLog> ();
 			
-			this._rms = db.Query<RmLog> ("select * from RmLog where ExerciseID=?", this._exercise.ID);
+			this._rms = db.Query<RmLog> ("select * from RmLog where ExerciseID=? order by DateLogged DESC", this._exercise.ID);
 
 			// temp for testing
 			if (this._rms.Count == 0) {
@@ -117,7 +117,18 @@ namespace onermlog
 			}
 		}
 
+		private void RefreshRecords ()
+		{
+			this._logSect.RemoveRange(0, this._logSect.Count);
 
+			foreach (RmLog rm in this._rms) {
+				StringElement recordString = new StringElement (rm.Weight.ToString());
+				this._logSect.Add(recordString);
+			}
+
+			this._logRoot.Reload(this._logSect, UITableViewRowAnimation.None);
+
+		}
 		private UINavigationController NewRMEntry () {
 
 			CustomRootElement root = new CustomRootElement(" ");
@@ -126,6 +137,7 @@ namespace onermlog
 			UINavigationController nav = new UINavigationController(dvc);
 
 			dvc.BackgroundImage = "images/white_carbon";
+			dvc.NavigationBarColor = UIColor.FromRGB(39, 113, 205);
 			dvc.NavigationBarImage = UIImage.FromBundle("images/navBar");
 
 
@@ -166,7 +178,7 @@ namespace onermlog
 				this._rms.Add(newEntry);
 
 				// refresh view
-				this._logRoot.Reload(this._logSect, UITableViewRowAnimation.None);
+				this.RefreshRecords();
 
 			};
 
