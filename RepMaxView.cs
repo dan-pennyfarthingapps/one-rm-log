@@ -71,6 +71,7 @@ namespace onermlog
 
 			// labels
 			this.lblExName.Text = this._exercise.Name;
+			LargestRMForDisplay();
 
 			// Put the dialog view controller into the UIView
 			this.dvcView.AddSubview(this._dvc.View);
@@ -110,11 +111,7 @@ namespace onermlog
 			
 			this._rms = db.Query<RmLog> ("select * from RmLog where ExerciseID=? order by DateLogged DESC", this._exercise.ID);
 
-			// temp for testing
-			if (this._rms.Count == 0) {
-				this._rms.Add(new RmLog { ExerciseID = this._exercise.ID, DateLogged = DateTime.Now, Weight = 200.0, });
-				this._rms.Add(new RmLog { ExerciseID = this._exercise.ID, DateLogged = DateTime.Now, Weight = 190.0, });
-			}
+
 		}
 
 		private void RefreshRecords ()
@@ -127,8 +124,30 @@ namespace onermlog
 			}
 
 			this._logRoot.Reload(this._logSect, UITableViewRowAnimation.None);
+			LargestRMForDisplay();
+		}
+
+		private void LargestRMForDisplay ()
+		{
+			DateTime largestDate = DateTime.Today;
+			double largestRM = 0.0;
+			if (this._rms.Count > 0) {
+				foreach (RmLog rm in this._rms) {
+					if (rm.Weight > largestRM) {
+						largestRM = rm.Weight;
+						largestDate = rm.DateLogged;
+					}
+				}
+
+				this.lblMaxOnDate.Text = "on " + largestDate.ToShortDateString ();
+				this.lblWeightMax.Text = largestRM.ToString () + " lb.";
+			} else {
+				this.lblMaxOnDate.Text = "add one";
+				this.lblWeightMax.Text = "No RM";
+			}
 
 		}
+
 		private UINavigationController NewRMEntry () {
 
 			CustomRootElement root = new CustomRootElement(" ");
@@ -174,7 +193,7 @@ namespace onermlog
 
 				dvc.NavigationController.DismissViewController(true, null);
 
-				var b = db.Insert(newEntry);
+				db.Insert(newEntry);
 				this._rms.Add(newEntry);
 
 				// refresh view
