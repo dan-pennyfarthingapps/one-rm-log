@@ -42,7 +42,7 @@ namespace onermlog
 			// load data from list
 			this._logSect = new Section ();
 			foreach (RmLog rm in this._rms) {
-				StringElement recordString = new StringElement (rm.Weight.ToString());
+				StringElement recordString = new StringElement (rm.Weight.ToString(), rm.DateLogged.ToShortDateString());
 				this._logSect.Add(recordString);
 			}
 
@@ -119,7 +119,7 @@ namespace onermlog
 			this._logSect.RemoveRange(0, this._logSect.Count);
 
 			foreach (RmLog rm in this._rms) {
-				StringElement recordString = new StringElement (rm.Weight.ToString());
+				StringElement recordString = new StringElement (rm.Weight.ToString(), rm.DateLogged.ToShortDateString());
 				this._logSect.Add(recordString);
 			}
 
