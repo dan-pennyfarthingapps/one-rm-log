@@ -119,6 +119,7 @@ namespace onermlog
 		UINavigationController _exerciseOne;
 		UINavigationController _exerciseTwo;
 		UINavigationController _exerciseThree;
+		UINavigationController _aboutConfig;
 
 		private SQLiteConnection db;
 		private List<Exercise> exercises;
@@ -128,6 +129,7 @@ namespace onermlog
 			base.ViewDidLoad();
 
 			UIImage rmIcon = UIImage.FromBundle("images/rmTab");
+			UIImage aboutIcon = UIImage.FromBundle("images/configTab");
 
 			/**
 			UIImage aboutIcon = UIImage.FromBundle("icons/tabBarIconAbout");
@@ -163,13 +165,19 @@ namespace onermlog
 			this._exerciseThree.TabBarItem.Image = rmIcon;
 			this._exerciseThree.PushViewController(new RepMaxView(exercises[2]), false);
 
-			// TODO: Add settings tab
+
+			this._aboutConfig = new UINavigationController();
+			this._aboutConfig.TabBarItem = new UITabBarItem();
+			this._aboutConfig.TabBarItem.Title = "Configuration";
+			this._aboutConfig.TabBarItem.Image = aboutIcon;
+			this._aboutConfig.PushViewController(new ConfigAboutScreen(), false);
+
 
 			this.ViewControllers = new UIViewController[] {
 				this._exerciseOne,
 				this._exerciseTwo,
 				this._exerciseThree,
-				
+				this._aboutConfig,
 			};
 			this.SelectedViewController = this._exerciseTwo;
 

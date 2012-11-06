@@ -14,7 +14,7 @@
 	<key>CFBundleIdentifier</key>
 	<string>com.pennyfarthingapps.onermlog</string>
 	<key>CFBundleVersion</key>
-	<string>.1</string>
+	<string>0.2</string>
 	<key>MinimumOSVersion</key>
 	<string>5.0</string>
 	<key>UIDeviceFamily</key>
