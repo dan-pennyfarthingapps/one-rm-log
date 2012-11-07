@@ -143,6 +143,14 @@
     <Content Include="images\configTab%402x.png" />
     <Content Include="images\rmTab.png" />
     <Content Include="images\rmTab%402x.png" />
+    <Content Include="icons\contactEm.png" />
+    <Content Include="icons\contactEm%402x.png" />
+    <Content Include="icons\contactFb.png" />
+    <Content Include="icons\contactFb%402x.png" />
+    <Content Include="icons\contactHP.png" />
+    <Content Include="icons\contactHP%402x.png" />
+    <Content Include="icons\contactTw.png" />
+    <Content Include="icons\contactTw%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />

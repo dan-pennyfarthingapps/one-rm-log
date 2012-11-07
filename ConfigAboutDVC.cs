@@ -110,9 +110,7 @@ namespace onermlog
 			
 			Section legalSect = new Section("Disclaimer") { };
 			
-			MultilineElement disclaimerLines = new MultilineElement("Please check with the manufacturer on the correct torque specs for your components. " +
-			                                                        "Please do not ruin your carbon frame! All brand names are properties of their respective owners, used for reference purposes only. " +
-			                                                        "Penny Farthing Apps, llc is not related to any company included within the app.");
+			MultilineElement disclaimerLines = new MultilineElement("blah.");
 			
 			
 			legalSect.Add(disclaimerLines);
@@ -155,7 +153,7 @@ namespace onermlog
 		private void ShowEmailView() {
 			MFMailComposeViewController _mailController = new MFMailComposeViewController ();
 			_mailController.SetToRecipients (new string[]{"support@pennyfarthingapps.com"});
-			_mailController.SetSubject ("support for bike mech app");
+			_mailController.SetSubject ("support for one rm log");
 			_mailController.SetMessageBody ("", false);
 			
 			_mailController.Finished += ( object s, MFComposeResultEventArgs args) => {
