@@ -115,10 +115,7 @@
     </Compile>
     <Compile Include="Exercise.cs" />
     <Compile Include="SQLite.cs" />
-    <Compile Include="ConfigAboutScreen.cs" />
-    <Compile Include="ConfigAboutScreen.designer.cs">
-      <DependentUpon>ConfigAboutScreen.cs</DependentUpon>
-    </Compile>
+    <Compile Include="ConfigAboutDVC.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -153,6 +150,5 @@
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="RepMaxView.xib" />
-    <InterfaceDefinition Include="ConfigAboutScreen.xib" />
   </ItemGroup>
 </Project>

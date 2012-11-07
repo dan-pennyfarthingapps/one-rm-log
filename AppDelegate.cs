@@ -170,7 +170,7 @@ namespace onermlog
 			this._aboutConfig.TabBarItem = new UITabBarItem();
 			this._aboutConfig.TabBarItem.Title = "Configuration";
 			this._aboutConfig.TabBarItem.Image = aboutIcon;
-			this._aboutConfig.PushViewController(new ConfigAboutScreen(), false);
+			this._aboutConfig.PushViewController(new ConfigScreenDVC(), false);
 
 
 			this.ViewControllers = new UIViewController[] {
