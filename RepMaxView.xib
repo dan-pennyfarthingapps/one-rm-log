@@ -248,7 +248,7 @@
 					<object class="IBUIButton" id="667824117">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{74, 133}, {47, 48}}</string>
+						<string key="NSFrame">{{74, 133}, {48, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="555234793"/>
@@ -257,21 +257,23 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">tw</string>
 						<reference key="IBUIHighlightedTitleColor" ref="350312200"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="708181242"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">images/twitterBtn</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="714042517"/>
 						<reference key="IBUIFont" ref="330447252"/>
 					</object>
 					<object class="IBUIButton" id="555234793">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{137, 133}, {47, 48}}</string>
+						<string key="NSFrame">{{137, 133}, {48, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="272394746"/>
@@ -280,14 +282,16 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<int key="IBUIButtonType">1</int>
-						<string key="IBUINormalTitle">fb</string>
 						<reference key="IBUIHighlightedTitleColor" ref="350312200"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="708181242"/>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">images/facebookBtn</string>
+						</object>
 						<reference key="IBUIFontDescription" ref="714042517"/>
 						<reference key="IBUIFont" ref="330447252"/>
 					</object>
@@ -541,6 +545,8 @@
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="images/addnewbtn">{16, 16}</string>
 			<string key="images/addnewbtn-selected">{16, 16}</string>
+			<string key="images/facebookBtn">{16, 16}</string>
+			<string key="images/twitterBtn">{16, 16}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1930</string>
 	</data>

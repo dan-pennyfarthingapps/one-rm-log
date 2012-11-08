@@ -160,6 +160,10 @@
     <Content Include="Default%402x.png" />
     <Content Include="images\navBarBlank.png" />
     <Content Include="images\navBarBlank%402x.png" />
+    <Content Include="images\facebookBtn.png" />
+    <Content Include="images\facebookBtn%402x.png" />
+    <Content Include="images\twitterBtn.png" />
+    <Content Include="images\twitterBtn%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
