@@ -276,7 +276,7 @@ namespace onermlog
 				db.Update(this._exercise);
 
 				this.NavigationController.TabBarItem.Title = this._exercise.Name;
-				this.lblExName = this._exercise.Name;
+				this.lblExName.Text = this._exercise.Name;
 			};
 			
 			return nav;
