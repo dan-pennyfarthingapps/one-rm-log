@@ -93,7 +93,9 @@ namespace onermlog
 			UIBarButtonItem editButton = new UIBarButtonItem(UIBarButtonSystemItem.Edit);
 			editButton.TintColor = buttonColor;
 			editButton.Clicked += delegate {
-				//dvc.NavigationController.DismissViewController(true, null);
+				var editNameScreen = EditExerciseName();
+				editNameScreen.ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
+				this.NavigationController.PresentViewController (editNameScreen, true, null);
 			};
 			this.NavigationItem.LeftBarButtonItem = editButton;
 
@@ -228,6 +230,58 @@ namespace onermlog
 			return nav;
 
 
+		}
+
+		private UINavigationController EditExerciseName () {
+			
+			CustomRootElement root = new CustomRootElement(" ");
+			
+			CustomDialogViewController dvc = new CustomDialogViewController(root, false);
+			UINavigationController nav = new UINavigationController(dvc);
+			
+			dvc.BackgroundImage = "images/white_carbon";
+			dvc.NavigationBarColor = UIColor.FromRGB(39, 113, 205);
+			dvc.NavigationBarImage = UIImage.FromBundle("images/navBar");
+			
+			
+			UIColor buttonColor = UIColor.FromRGB(39, 113, 205);
+			UIBarButtonItem cancelButton = new UIBarButtonItem(UIBarButtonSystemItem.Cancel);
+			cancelButton.TintColor = buttonColor;
+			cancelButton.Clicked += delegate {
+				dvc.NavigationController.DismissViewController(true, null);
+			};
+			UIBarButtonItem saveButton = new UIBarButtonItem(UIBarButtonSystemItem.Save);
+			saveButton.TintColor = buttonColor;
+			dvc.NavigationItem.LeftBarButtonItem = cancelButton;
+			dvc.NavigationItem.RightBarButtonItem = saveButton;
+			
+			
+			Section nameSection = new Section("Edit Name") {};
+			
+			EntryElement nameEdit = new EntryElement("Name", "", this._exercise.Name, false);
+			
+			nameSection.Add(nameEdit);
+			
+			root.Add(nameSection);
+
+			// TODO: Add all the logs here and set them to delete mode
+			
+			
+			
+			saveButton.Clicked += delegate {
+				this._exercise.Name = nameEdit.Value;
+				
+				dvc.NavigationController.DismissViewController(true, null);
+				
+				db.Update(this._exercise);
+
+				this.NavigationController.TabBarItem.Title = this._exercise.Name;
+				this.lblExName = this._exercise.Name;
+			};
+			
+			return nav;
+			
+			
 		}
 	
 	}

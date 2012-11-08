@@ -10,7 +10,8 @@ namespace onermlog
 		public int ID { get; set; }
 		
 		public string Name { get; set; }
-		
+
+		// TODO add a changed event
 
 	}
 
