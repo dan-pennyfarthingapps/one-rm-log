@@ -88,6 +88,16 @@ namespace onermlog
 				this.NavigationController.PresentViewController (addRMScreen, true, null);
 			};
 
+			// edit button
+			UIColor buttonColor = UIColor.FromRGB(39, 113, 205);
+			UIBarButtonItem editButton = new UIBarButtonItem(UIBarButtonSystemItem.Edit);
+			editButton.TintColor = buttonColor;
+			editButton.Clicked += delegate {
+				//dvc.NavigationController.DismissViewController(true, null);
+			};
+			this.NavigationItem.LeftBarButtonItem = editButton;
+
+
 
 		}
 		
