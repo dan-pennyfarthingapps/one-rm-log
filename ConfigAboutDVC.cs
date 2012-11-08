@@ -65,6 +65,8 @@ namespace onermlog
 			pennyFarthing.Tapped += delegate() {
 				UIApplication.SharedApplication.OpenUrl(NSUrl.FromString("http://pennyfarthingapps.com"));
 			};
+
+
 			
 			CustomRootElement contactUsRoot = new CustomRootElement("Contact Us");
 			
@@ -105,12 +107,24 @@ namespace onermlog
 			
 			aboutSection.Add(pennyFarthing);
 			aboutSection.Add(contactUsRoot);
-			
+
 			configRoot.Add(aboutSection);
+
+			// TODO: add link to app
+			Section	ourAppsSection = new Section("Check out Our Apps");
+			StyledStringElement myWODTimeBadge = new StyledStringElement("My WOD Time", "Crossfit Timer");
+			myWODTimeBadge.Image = UIImage.FromBundle("icons/myWODTime");
+			myWODTimeBadge.Tapped += delegate() {
+				UIApplication.SharedApplication.OpenUrl(NSUrl.FromString("itms://itunes.apple.com/us/app/my-wod-time/id568915915?mt=8&uo=4"));
+			};
+
+			ourAppsSection.Add(myWODTimeBadge);
+			configRoot.Add(ourAppsSection);
+
 			
 			Section legalSect = new Section("Disclaimer") { };
 			
-			MultilineElement disclaimerLines = new MultilineElement("blah.");
+			MultilineElement disclaimerLines = new MultilineElement("Please consult a physician before starting any exercise program. Always use a spotter, and pick up your weights!");
 			
 			
 			legalSect.Add(disclaimerLines);

@@ -151,6 +151,8 @@
     <Content Include="icons\contactHP%402x.png" />
     <Content Include="icons\contactTw.png" />
     <Content Include="icons\contactTw%402x.png" />
+    <Content Include="icons\myWODTime.png" />
+    <Content Include="icons\myWODTime%402x.png" />
   </ItemGroup>
   <ItemGroup>
     <ITunesArtwork Include="iTunesArtwork%402x" />
