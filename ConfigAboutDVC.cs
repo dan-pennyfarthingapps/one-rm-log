@@ -23,7 +23,7 @@ namespace onermlog
 		public ConfigScreenDVC () : base (UITableViewStyle.Grouped, null)
 		{
 			MyRootElement configRoot = new MyRootElement(" ") { };
-			//var dvc = new MyDialogViewController (spokeRoot, true);
+
 			
 			Section weightSection = new Section("Weight Options") {};
 			
@@ -77,7 +77,7 @@ namespace onermlog
 			//facebookPageBE.Font = UIFont.FromName ("HelveticaNeue-Bold", 17f);
 			facebookPageBE.Image = UIImage.FromBundle("icons/contactFb");
 			
-			// TODO: change to app page
+
 			facebookPageBE.Tapped += delegate() {
 				if(UIApplication.SharedApplication.CanOpenUrl(NSUrl.FromString("fb://profile/439101479483557"))) {
 					UIApplication.SharedApplication.OpenUrl(NSUrl.FromString("fb://profile/439101479483557"));
