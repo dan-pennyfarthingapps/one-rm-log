@@ -22,7 +22,7 @@ namespace onermlog
 		
 		public ConfigScreenDVC () : base (UITableViewStyle.Grouped, null)
 		{
-			MyRootElement configRoot = new MyRootElement(" ") { };
+			MyRootElement configRoot = new MyRootElement("Configuration") { };
 
 			
 			Section weightSection = new Section("Weight Options") {};
@@ -148,7 +148,7 @@ namespace onermlog
 			
 			// Bar
 			if (UIDevice.CurrentDevice.CheckSystemVersion (5, 0)) {
-				this.navBarBackgroundImage = UIImage.FromBundle ("images/navBar");
+				this.navBarBackgroundImage = UIImage.FromBundle ("images/navBarBlank");
 				//this.NavigationController.NavigationItem.Title = "";
 				this.NavigationController.NavigationBar.SetBackgroundImage (this.navBarBackgroundImage, UIBarMetrics.Default);
 			} 
