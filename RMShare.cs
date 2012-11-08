@@ -14,11 +14,10 @@ namespace onermlog
 {
 	public class RMShare
 	{
-		private UIActionSheet _shareSheet;
+
 		private UIViewController _vc;
 		
-		// TWITTER
-		//private bool _canSendTweets;
+
 		
 		// Facebook
 		public string _fbAppId;
@@ -54,22 +53,7 @@ namespace onermlog
 			// ValidateSetup();
 		}
 		
-		public void ShowShareSheet (UIView view) {
-			NetworkStatus status = Reachability.InternetConnectionStatus();
-			if(status == NetworkStatus.NotReachable) {
-				// Put alternative content/message here
-				ShowMessage ("Network Error", "Sharing requires an Internet connection. Please check your network settings and try again.");
-			}
-			else
-			{
-				// Put Internet Required Code here
-				this._shareSheet.ShowInView(view);
-			}
-			
-			
-			
-			
-		}
+
 		
 		public string SocialMessage {
 			get { return this._socialMessage; }
@@ -96,11 +80,18 @@ namespace onermlog
 		
 		public void ShowFacebookView ()
 		{
-			
-			if (this._facebook.IsSessionValid)
-				PostToWall("test");
+			NetworkStatus status = Reachability.InternetConnectionStatus();
+			if(status == NetworkStatus.NotReachable) {
+				// Put alternative content/message here
+				ShowMessage ("Network Error", "Sharing requires an Internet connection. Please check your network settings and try again.");
+			}
 			else
-				Login ();
+			{
+				if (this._facebook.IsSessionValid)
+					PostToWall("test");
+				else
+					Login ();
+			}
 			
 		}
 		
@@ -156,13 +147,14 @@ namespace onermlog
 			Console.WriteLine("post to wall launched");
 			
 			var json = new JsonObject ();
-			json.Add ("name", new JsonPrimitive ("About My WOD Time"));
-			json.Add ("link", new JsonPrimitive ("http://wodti.me"));
-			
+			json.Add ("name", new JsonPrimitive ("About One RM Log"));
+			json.Add ("link", new JsonPrimitive ("http://pennyfarthingapps.com")); // TODO: update with one rm website
+
+			// TODO: update the picture and URL for the facebook wall post
 			var parameters = NSMutableDictionary.FromObjectsAndKeys (
-				new object [] { "Completed a WOD", "using My WOD Time", "Just completed " + this.SocialMessage, 
-				"http://penfarapps.com/SU4Bie", "http://www.wodti.me/img/facebook_icon_large.png", json.ToString ()},
-			new object [] { "name", "caption", "description", "link", "picture", "actions"});
+				new object [] { "Hit a new one rep max", "one rm log app", "I just got a new one rep max " + this.SocialMessage, 
+				"http://pennyfarthingapps.com", "http://www.wodti.me/img/facebook_icon_large.png", json.ToString ()},
+			new object [] { "name", "caption", "description", "link", "picture", "actions"}); 
 			
 			_wallDialogHandler = DialogCallback (url => {
 				
