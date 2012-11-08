@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 
 using MonoTouch.Foundation;
@@ -68,7 +69,7 @@ namespace onermlog
 
 
 			
-			CustomRootElement contactUsRoot = new CustomRootElement("Contact Us");
+			MyRootElement contactUsRoot = new MyRootElement("Contact Us");
 			
 			Section contactUsSect = new Section("Contact");
 			
@@ -110,7 +111,7 @@ namespace onermlog
 
 			configRoot.Add(aboutSection);
 
-			// TODO: add link to app
+			// TODO: change to JSON from website
 			Section	ourAppsSection = new Section("Check out Our Apps");
 			StyledStringElement myWODTimeBadge = new StyledStringElement("My WOD Time", "Crossfit Timer");
 			myWODTimeBadge.Image = UIImage.FromBundle("icons/myWODTime");
@@ -209,6 +210,7 @@ namespace onermlog
 
 		private void SetDefaults() {
 			this.BackgroundImage = "images/white_carbon";
+			this.SetCustomBackButton(UIImage.FromBundle("images/backbutton"), RectangleF.FromLTRB (0, 20, 50, 20));
 		}
 	}
 }
