@@ -26,9 +26,12 @@ namespace onermlog
 
 		private double largestRMValue;
 
+		private RMShare _share;
+
 		public RepMaxView (Exercise exerciseToShow) : base ("RepMaxView", null)
 		{
 			this._exercise = exerciseToShow;
+			this._share = new RMShare(this);
 
 			largestRMValue = 0.0;
 
@@ -52,6 +55,8 @@ namespace onermlog
 
 
 			this._logRoot.Add(this._logSect);
+
+
 		}
 		
 		public override void DidReceiveMemoryWarning ()
@@ -102,7 +107,8 @@ namespace onermlog
 			};
 			this.NavigationItem.LeftBarButtonItem = editButton;
 
-
+			// sharing buttons
+			this.btnTw.TouchUpInside += (object sender, EventArgs e) => this._share.ShowTwitterView();
 
 		}
 		
@@ -161,9 +167,11 @@ namespace onermlog
 				this.lblMaxOnDate.Text = "on " + largestDate.ToShortDateString ();
 				this.lblWeightMax.Text = largestRM.ToString () + " lb.";
 				largestRMValue = largestRM;
+				this._share.SocialMessage = "for " + this._exercise.Name + " at " + largestRM.ToString() + " lb. on " + largestDate.ToShortDateString();
 			} else {
 				this.lblMaxOnDate.Text = "add one";
 				this.lblWeightMax.Text = "No RM";
+				this._share.SocialMessage = "for " + this._exercise.Name + " of 0 lb!";
 			}
 
 		}
