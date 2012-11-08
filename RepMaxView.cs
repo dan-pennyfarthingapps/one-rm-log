@@ -24,9 +24,13 @@ namespace onermlog
 		private Exercise _exercise;
 		private List<RmLog> _rms;
 
+		private double largestRMValue;
+
 		public RepMaxView (Exercise exerciseToShow) : base ("RepMaxView", null)
 		{
 			this._exercise = exerciseToShow;
+
+			largestRMValue = 0.0;
 
 			string dbname = "onerm.db";
 			string documents = Environment.GetFolderPath (Environment.SpecialFolder.Personal); // This goes to the documents directory for your app
@@ -79,7 +83,7 @@ namespace onermlog
 
 			this.btnAddNew.TouchUpInside += delegate(object sender, EventArgs e) {
 				
-				var addRMScreen = NewRMEntry ();
+				var addRMScreen = NewRMEntry (largestRMValue);
 				addRMScreen.ModalTransitionStyle = UIModalTransitionStyle.CoverVertical;
 				this.NavigationController.PresentViewController (addRMScreen, true, null);
 			};
@@ -141,6 +145,7 @@ namespace onermlog
 
 				this.lblMaxOnDate.Text = "on " + largestDate.ToShortDateString ();
 				this.lblWeightMax.Text = largestRM.ToString () + " lb.";
+				largestRMValue = largestRM;
 			} else {
 				this.lblMaxOnDate.Text = "add one";
 				this.lblWeightMax.Text = "No RM";
@@ -148,7 +153,7 @@ namespace onermlog
 
 		}
 
-		private UINavigationController NewRMEntry () {
+		private UINavigationController NewRMEntry (double prevBest) {
 
 			CustomRootElement root = new CustomRootElement(" ");
 
@@ -174,7 +179,16 @@ namespace onermlog
 
 			Section newRMSection = new Section("Record Details") {};
 
-			ResponsiveCounterElement newRMCounter = new ResponsiveCounterElement("New RM", "200.0"); // TODO: grab the previous best and use that
+			string strPrevBest = String.Format("{0:000.0}", prevBest);
+
+			if(prevBest == 0)
+				strPrevBest = "100.0";
+
+			
+
+			ResponsiveCounterElement newRMCounter = new ResponsiveCounterElement("New RM", strPrevBest); // TODO: grab the previous best and use that
+			newRMCounter.SetCustomBackButton(UIImage.FromBundle("images/backbutton"), RectangleF.FromLTRB (0, 20, 50, 20));
+
 			DateElement newRMDate = new DateElement("Date", DateTime.Today);
 
 			newRMSection.Add(newRMCounter);
