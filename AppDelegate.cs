@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 using MonoTouch.Foundation;
 using MonoTouch.UIKit;
@@ -149,19 +150,19 @@ namespace onermlog
 
 			this._exerciseOne = new UINavigationController();
 			this._exerciseOne.TabBarItem = new UITabBarItem();
-			this._exerciseOne.TabBarItem.Title = exercises[0].Name;
+			this._exerciseOne.TabBarItem.Title = ShorterTabTitle(exercises[0].Name);
 			this._exerciseOne.TabBarItem.Image = rmIcon;
 			this._exerciseOne.PushViewController(new RepMaxView(exercises[0]), false);
 
 			this._exerciseTwo = new UINavigationController();
 			this._exerciseTwo.TabBarItem = new UITabBarItem();
-			this._exerciseTwo.TabBarItem.Title = exercises[1].Name;
+			this._exerciseTwo.TabBarItem.Title = ShorterTabTitle(exercises[1].Name);
 			this._exerciseTwo.TabBarItem.Image = rmIcon;
 			this._exerciseTwo.PushViewController(new RepMaxView(exercises[1]), false);
 
 			this._exerciseThree = new UINavigationController();
 			this._exerciseThree.TabBarItem = new UITabBarItem();
-			this._exerciseThree.TabBarItem.Title = exercises[2].Name;
+			this._exerciseThree.TabBarItem.Title = ShorterTabTitle(exercises[2].Name);
 			this._exerciseThree.TabBarItem.Image = rmIcon;
 			this._exerciseThree.PushViewController(new RepMaxView(exercises[2]), false);
 
@@ -181,6 +182,13 @@ namespace onermlog
 			};
 			this.SelectedViewController = this._exerciseTwo;
 
+		}
+
+		private string ShorterTabTitle(string title) {
+			if (title.Length > 16)
+				return title.Substring(0, 16);
+			else 
+				return title;
 		}
 		
 	}

@@ -75,6 +75,9 @@ namespace onermlog
 
 			// labels
 			this.lblExName.Text = this._exercise.Name;
+			this.lblExName.AdjustsFontSizeToFitWidth = true;
+			this.lblExName.Lines = 1;
+
 			LargestRMForDisplay();
 
 			// Put the dialog view controller into the UIView
@@ -275,7 +278,11 @@ namespace onermlog
 				
 				db.Update(this._exercise);
 
-				this.NavigationController.TabBarItem.Title = this._exercise.Name;
+				if(this._exercise.Name.Length > 16)
+					this.NavigationController.TabBarItem.Title = this._exercise.Name.Substring(0, 16);
+				else 
+					this.NavigationController.TabBarItem.Title = this._exercise.Name;
+
 				this.lblExName.Text = this._exercise.Name;
 			};
 			
