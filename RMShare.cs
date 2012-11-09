@@ -33,7 +33,7 @@ namespace onermlog
 			//this._canSendTweets = TWTweetComposeViewController.CanSendTweet;
 			
 			// FB - change appid
-			this._fbAppId = ""; 
+			this._fbAppId = "435387349843657"; 
 			var sessionDelegate = new SessionDelegate (this); 
 			this._facebook = new Facebook (this._fbAppId, sessionDelegate);
 			
@@ -50,7 +50,7 @@ namespace onermlog
 			
 			this._socialMessage = "";
 			
-			// ValidateSetup();
+			ValidateSetup();
 		}
 		
 

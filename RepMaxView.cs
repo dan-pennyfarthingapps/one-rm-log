@@ -109,7 +109,7 @@ namespace onermlog
 
 			// sharing buttons
 			this.btnTw.TouchUpInside += (object sender, EventArgs e) => this._share.ShowTwitterView();
-
+			this.btnFb.TouchUpInside += (object sender, EventArgs e) => this._share.ShowFacebookView();
 		}
 		
 		public override void ViewDidUnload ()
