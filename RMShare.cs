@@ -170,7 +170,7 @@ namespace onermlog
 		}
 		
 		public void SaveAuthorization () {
-			
+			Console.WriteLine("authorizing");
 			var defaults = NSUserDefaults.StandardUserDefaults;
 			defaults ["FBAccessTokenKey"] = new NSString (this._facebook.AccessToken);
 			defaults ["FBExpirationDateKey"] = this._facebook.ExpirationDate;
