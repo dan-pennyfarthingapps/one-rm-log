@@ -27,6 +27,7 @@ namespace onermlog
 		private SQLiteConnection db;
 		private List<Exercise> exercises;
 
+		private RMShare _rmshare;
 		
 		//
 		// This method is invoked when the application has loaded and is ready to run. In this 
@@ -39,7 +40,9 @@ namespace onermlog
 			CopyDb();
 			
 			SetupDb();
-			
+
+			this._rmshare = new RMShare(navigation);
+
 			// create a new window instance based on the screen size
 			window = new UIWindow (UIScreen.MainScreen.Bounds);
 			
@@ -109,7 +112,19 @@ namespace onermlog
 
 		}
 		
+		// Pre-4.2 callback
+		// This method is called back when Facebook has authenticated us in the Web UI
+		public override bool HandleOpenURL (UIApplication application, NSUrl url)
+		{
+			return this._rmshare.HandleOpenURL(application, url);
+		}
 		
+		// Post 4.2 callback
+		public override bool OpenUrl (UIApplication application, NSUrl url, string sourceApplication, NSObject annotation)
+		{
+			return this._rmshare.OpenUrl(application, url, sourceApplication, annotation);
+		}
+
 	}
 	
 	public class MyTabBarController : UITabBarController {
@@ -192,6 +207,8 @@ namespace onermlog
 		}
 		
 	}
+
+
 
 }
 
